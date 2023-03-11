@@ -1,56 +1,358 @@
---
--- Built with,
---
---        ,gggg,
---       d8" "8I                         ,dPYb,
---       88  ,dP                         IP'`Yb
---    8888888P"                          I8  8I
---       88                              I8  8'
---       88        gg      gg    ,g,     I8 dPgg,
---  ,aa,_88        I8      8I   ,8'8,    I8dP" "8I
--- dP" "88P        I8,    ,8I  ,8'  Yb   I8P    I8
--- Yb,_,d88b,,_   ,d8b,  ,d8b,,8'_   8) ,d8     I8,
---  "Y8P"  "Y888888P'"Y88P"`Y8P' "YY8P8P88P     `Y8
---
-
--- This is a starter colorscheme for use with Lush,
--- for usage guides, see :h lush or :LushRunTutorial
-
---
--- Note: Because this is a lua file, vim will append it to the runtime,
---       which means you can require(...) it in other lua code (this is useful),
---       but you should also take care not to conflict with other libraries.
---
---       (This is a lua quirk, as it has somewhat poor support for namespacing.)
---
---       Basically, name your file,
---
---       "super_theme/lua/lush_theme/super_theme_dark.lua",
---
---       not,
---
---       "super_theme/lua/dark.lua".
---
---       With that caveat out of the way...
---
-
--- Enable lush.ify on this file, run:
---
---  `:Lushify`
---
---  or
---
---  `:lua require('lush').ify()`
-
 local lush = require('lush')
 local hsl = lush.hsl
 
--- LSP/Linters mistakenly show `undefined global` errors in the spec, they may
--- support an annotation like the following. Consult your server documentation.
----@diagnostic disable: undefined-global
 local theme = lush(function(injected_functions)
   local sym = injected_functions.sym
+
+  local norm = hsl(0, 0, 15)
+  local bg =   hsl(0, 0, 96)
+  local bg_subtle =      hsl(0, 0, 65)
+  local bg_very_subtle = hsl(0, 0, 89)
+  local color1 = hsl(32, 100, 50)
+  local color2 = hsl(5, 100, 45)
+  local color3 = hsl(60, 100, 38)
+
+  local green =  hsl(130, 100, 35)
+  local red =    hsl(0, 100, 50)
+  local blue =   hsl(215, 90, 65)
+
   return {
+    Normal {
+      bg = bg,
+      fg = norm,
+    },
+
+    Cursor {
+      bg = color2,
+      fg = norm,
+    },
+    Comment {
+      fg = bg_subtle,
+    },
+
+    Constant {
+      fg = color2,
+    },
+    Character { Constant },
+    Number { Constant },
+    Boolean {
+      Constant,
+      gui = "bold",
+      cterm = "bold",
+    },
+    Float { Constant },
+    String { Constant },
+
+    Identifier { Normal },
+    Function { Identifier },
+
+    Statement {
+      fg = color1,
+      -- gui = "bold",
+      -- cterm = "bold",
+    },
+    Conditional { Statement },
+    Repeat { Statement },
+    Label { Statement },
+    Keyword { Statement },
+    Exception { Statement },
+
+    Operator {
+      fg = norm,
+    },
+
+    PreProc {
+      fg = color1,
+    },
+    Include { PreProc },
+    Define { PreProc },
+    Macro { PreProc },
+    PreCondit { PreProc },
+
+    Type {
+      fg = norm,
+    },
+    StorageClass { Type },
+    Structure { Type },
+    Typedef { Type },
+
+    Special {
+      fg = color3,
+    },
+    SpecialChar { fg = norm },
+    Tag { fg = norm },
+    Delimiter { fg = norm },
+    SpecialComment { fg = norm },
+    Debug { fg = norm },
+
+    MatchParen {
+      bg = bg_subtle,
+      fg = norm,
+    },
+
+    -- Popup
+    Pmenu {
+      -- #606060
+      fg = norm,
+    },
+    PmenuSel {
+      fg = norm,
+      bg = color1,
+    },
+    PmenuSbar {
+      fg = norm,
+      bg = bg_subtle,
+    },
+    PmenuThumb {
+      fg = norm,
+      bg = bg_subtle,
+    },
+
+    -- Tabline
+    TabLine {
+      fg = norm,
+      -- #303030
+      bg = bg_subtle,
+    },
+    TabLineSel {
+      fg = norm,
+      bg = bg,
+    },
+    TabLineFill {
+      fg = norm,
+      bg = bg_very_subtle,
+    },
+
+    -- cursor shit
+    CursorColumn {
+      bg = bg_very_subtle
+    },
+    CursorLine { CursorColumn },
+    ColorColumn {
+      bg = hsl(0, 0, 93),
+    },
+
+    -- misc stuff?
+    Underlined {
+      fg = norm,
+      gui = "underline",
+      cterm = "underline",
+    },
+    Ignore {
+      fg = bg,
+    },
+    Error {
+      fg = bg,
+      bg = red,
+      cterm = "bold",
+    },
+    Todo {
+      fg = color2,
+      gui = "bold",
+      cterm = "underline",
+    },
+    SpecialKey {
+      fg = hsl(156, 60, 61),
+    },
+    NonText {
+      fg = hsl(0, 0, 46),
+    },
+    Directory {
+      fg = hsl(197, 100, 38),
+    },
+    ErrorMsg { Error },
+    IncSearch {
+      bg = color3,
+      fg = hsl(0, 0, 31),
+    },
+    Search {
+      bg = hsl(156, 60, 61),
+      fg = hsl(0, 0, 15),
+    },
+    MoreMsg {
+      fg = hsl(0, 0, 46),
+      cterm = "bold",
+      gui = "bold",
+    },
+    ModeMsg { MoreMsg },
+
+    LineNr {
+      fg = bg_subtle,
+    },
+    CursorLineNr {
+      fg = color2,
+      bg = bg_very_subtle,
+    },
+
+    Question { fg = red },
+    WarningMsg { fg = color3 },
+
+    StatusLine {
+      bg = bg,
+    },
+    StatusLineNC {
+      bg = bg_very_subtle,
+    },
+
+    VertSplit {
+      bg = bg_very_subtle,
+      fg = bg_very_subtle,
+    },
+
+    Title {
+      -- #0008ec4
+      fg = hsl(197, 100, 38),
+    },
+
+    Visual {
+      bg = bg_subtle,
+      fg = norm,
+    },
+    VisualNOS {
+      bg = bg_very_subtle,
+    },
+
+    WildMenu {
+      -- #262626
+      fg = bg,
+      bg = norm,
+    },
+
+    Folded {
+      -- #767676
+      fg = hsl(0, 0, 46)
+    },
+    FoldColumn {
+      fg = bg_subtle,
+    },
+
+    DiffAdd {
+      fg = green,
+    },
+    DiffDelete {
+      fg = red
+    },
+    DiffChange {
+      -- A89C14
+      fg = hsl(55, 79, 37),
+    },
+    DiffText {
+      -- 008EC4
+      fg = hsl(197, 100, 38),
+    },
+    SignColumn {
+      -- #5FD7A7
+      fg = hsl(156, 60, 61),
+    },
+
+    -- treesitter!
+    TSAttribute {
+      -- #767676
+      fg = color1,
+    },
+    TSBoolean { Boolean },
+    TSCharacter { Character },
+    TSNumber { Number },
+    TSFloat { Float },
+    TSCharacterSpecial { Character },
+    TSConstant { Constant },
+    TSConstBuiltin { Constant },
+    TSConstMacro { Constant },
+    TSString { Constant },
+    TSStringRegex { Constant },
+    TSStringEscape { Comment },
+    TSStringSpecial { Statement },
+    TSLiteral { Constant },
+    TSFuncBuiltin { fg = Constant.fg.lighten(40) },
+
+    TSComment { Comment },
+    TSConditional { Conditional },
+
+    TSConstructor { Statement },
+    TSDebug { Statement },
+    TSDefine { Statement },
+    TSError { Error },
+    TSException { Statement },
+    TSField { fg = Identifier.fg.darken(10) },
+    TSFuncMacro { Macro },
+    TSInclude { Include },
+    TSKeyword { Keyword },
+    TSKeywordFunction { Keyword },
+    TSKeywordOperator { Keyword },
+    TSKeywordReturn { Keyword },
+    TSLabel { Statement },
+
+    TSMethod { fg = Function.fg.darken(15) },
+    TSFunction { Identifier },
+    TSNamespace { Identifier },
+    TSNone { Comment },
+    TSOperator { fg = Operator.fg.darken(10) },
+    TSParameter { Identifier },
+    TSParameterReference { Identifier },
+    TSPreProc { PreProc },
+    TSProperty { fg = Function.fg.darken(10) },
+    TSSymbol { fg = Identifier.fg.darken(20) },
+
+    TSPunctDelimiter { Statement },
+    TSPunctBracket { Statement },
+    TSPunctSpecial { Statement },
+
+    TSRepeat { Repeat },
+
+    TSStorageClass { fg = Identifier.fg.darken(60) },
+
+    TSTag { Identifier },
+    TSTagAttribute { Statement },
+    TSTagDelimiter { Statement },
+
+    TSText { Comment },
+    TSStrong { Identifier },
+    TSEmphasis { Identifier },
+    TSUnderline { Identifier, gui = "underline" },
+    TSStrike { Identifier, gui = "strikethrough" },
+    TSTitle { Title },
+    TSURI { TSUnderline },
+
+    TSMath { Statement },
+    TSTextReference { Constant },
+    TSEnvironment { Statement },
+    TSEnvironmentName { Identifier },
+    TSNote { Identifier },
+    TSWarning { Constant, gui = "underline" },
+    TSDanger { Error, gui = "underline" },
+    TSType { Statement },
+    TSTypeBuiltin { Constant },
+    TSVariable { Identifier },
+    TSVariableBuiltin { Constant },
+
+    -- Plugin-specific support
+    WhichKey {
+      bg = bg_very_subtle,
+      fg = color2,
+    },
+    WhichKeyGroup {
+      bg = bg_very_subtle,
+      fg = WhichKey.fg.darken(5),
+    },
+    WhichKeySeparator {
+      bg = bg_very_subtle,
+      fg = WhichKey.fg.darken(30),
+    },
+    WhichKeyDesc {
+      bg = bg_very_subtle,
+      fg = hsl(0, 0, 58),
+    },
+    WhichKeyFloat {
+      bg = bg_very_subtle,
+      fg = hsl(0, 0, 78),
+    },
+    WhichKeyValue {
+      bg = bg_very_subtle,
+      fg = hsl(0, 0, 78),
+    },
+
+    CmpItemAbbrMatch { Constant },
+    CmpItemAbbrMatchFuzzy { Constant },
     -- The following are the Neovim (as of 0.8.0-dev+100-g371dfb174) highlight
     -- groups, mostly used for styling UI elements.
     -- Comment them out and add your own properties to override the defaults.
