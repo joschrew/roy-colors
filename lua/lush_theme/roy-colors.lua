@@ -155,7 +155,7 @@ local theme = lush(function(injected_functions)
       cterm = "underline",
     },
     SpecialKey {
-      fg = hsl(156, 60, 61),
+      fg = green,
     },
     NonText {
       fg = hsl(0, 0, 46),
@@ -169,7 +169,7 @@ local theme = lush(function(injected_functions)
       fg = hsl(0, 0, 31),
     },
     Search {
-      bg = hsl(156, 60, 61),
+      bg = green,
       fg = hsl(0, 0, 15),
     },
     MoreMsg {
@@ -245,7 +245,7 @@ local theme = lush(function(injected_functions)
     },
     SignColumn {
       -- #5FD7A7
-      fg = hsl(156, 60, 61),
+      fg = green,
     },
 
     -- treesitter!
