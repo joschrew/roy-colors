@@ -96,6 +96,7 @@ local theme = lush(function(injected_functions)
     Pmenu {
       -- #606060
       fg = norm,
+      bg = bg_very_subtle,
     },
     PmenuSel {
       fg = norm,
