@@ -31,17 +31,19 @@ local theme = lush(function(injected_functions)
     },
 
     Constant {
+      fg = color3,
+    },
+    Number { Constant },
+    Float { Constant },
+    String {
       fg = color2,
     },
-    Character { Constant },
-    Number { Constant },
+    Character { String },
     Boolean {
-      Constant,
+      String,
       gui = "bold",
       cterm = "bold",
     },
-    Float { Constant },
-    String { Constant },
 
     Identifier { Normal },
     Function { Identifier },
