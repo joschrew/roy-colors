@@ -8,9 +8,10 @@ local theme = lush(function(injected_functions)
   local bg =   hsl(0, 0, 96)
   local bg_subtle =      hsl(0, 0, 65)
   local bg_very_subtle = hsl(0, 0, 89)
-  local color1 = hsl(32, 100, 50)
-  local color2 = hsl(5, 100, 45)
-  local color3 = hsl(60, 100, 38)
+  local color1 = hsl(0, 0, 15)
+  local color2 = hsl(5, 75, 45)
+  local color3 = hsl(275, 85, 35)
+  local color4 = hsl(215, 60, 45)
 
   local green =  hsl(130, 100, 35)
   local red =    hsl(0, 100, 50)
@@ -50,8 +51,8 @@ local theme = lush(function(injected_functions)
 
     Statement {
       fg = color1,
-      -- gui = "bold",
-      -- cterm = "bold",
+      gui = "bold",
+      cterm = "bold",
     },
     Conditional { Statement },
     Repeat { Statement },
@@ -65,6 +66,8 @@ local theme = lush(function(injected_functions)
 
     PreProc {
       fg = color1,
+      gui = "bold",
+      cterm = "bold",
     },
     Include { PreProc },
     Define { PreProc },
@@ -72,7 +75,7 @@ local theme = lush(function(injected_functions)
     PreCondit { PreProc },
 
     Type {
-      fg = norm,
+      fg = color4,
     },
     StorageClass { Type },
     Structure { Type },
@@ -99,7 +102,7 @@ local theme = lush(function(injected_functions)
       bg = bg_very_subtle,
     },
     PmenuSel {
-      fg = norm,
+      fg = bg,
       bg = color1,
     },
     PmenuSbar {
@@ -161,12 +164,12 @@ local theme = lush(function(injected_functions)
       fg = hsl(0, 0, 46),
     },
     Directory {
-      fg = hsl(197, 100, 38),
+      fg = blue,
     },
     ErrorMsg { Error },
     IncSearch {
       bg = color3,
-      fg = hsl(0, 0, 31),
+      fg = hsl(0, 0, 90),
     },
     Search {
       bg = green,
