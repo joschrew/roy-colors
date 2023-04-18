@@ -34,7 +34,7 @@ local theme = lush(function(injected_functions)
     Constant {
       fg = color3,
     },
-    Number { Constant },
+    Number { fg = norm },
     Float { Constant },
     String {
       fg = color2,
@@ -65,9 +65,7 @@ local theme = lush(function(injected_functions)
     },
 
     PreProc {
-      fg = color1,
-      gui = "bold",
-      cterm = "bold",
+      fg = color3,
     },
     Include { PreProc },
     Define { PreProc },
