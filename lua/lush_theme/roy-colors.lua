@@ -5,6 +5,7 @@ local theme = lush(function(injected_functions)
   local sym = injected_functions.sym
 
   local norm = hsl(0, 0, 15)
+  local norm_subtle = hsl(0, 0, 40)
   local bg =   hsl(0, 0, 96)
   local bg_subtle =      hsl(0, 0, 65)
   local bg_very_subtle = hsl(0, 0, 89)
@@ -13,9 +14,10 @@ local theme = lush(function(injected_functions)
   local color3 = hsl(275, 85, 35)
   local color4 = hsl(215, 60, 45)
 
-  local green =  hsl(130, 100, 35)
-  local red =    hsl(0, 100, 50)
-  local blue =   hsl(215, 90, 65)
+  local green  = hsl(130, 100, 35)
+  local red    = hsl(0, 100, 50)
+  local yellow = hsl(50, 100, 50)
+  local blue   = hsl(215, 100, 65)
 
   return {
     Normal {
@@ -159,7 +161,7 @@ local theme = lush(function(injected_functions)
       fg = green,
     },
     NonText {
-      fg = hsl(0, 0, 46),
+      fg = norm_subtle,
     },
     Directory {
       fg = blue,
@@ -174,7 +176,7 @@ local theme = lush(function(injected_functions)
       fg = hsl(0, 0, 15),
     },
     MoreMsg {
-      fg = hsl(0, 0, 46),
+      fg = norm_subtle,
       cterm = "bold",
       gui = "bold",
     },
@@ -224,7 +226,7 @@ local theme = lush(function(injected_functions)
 
     Folded {
       -- #767676
-      fg = hsl(0, 0, 46)
+      fg = norm_subtle
     },
     FoldColumn {
       fg = bg_subtle,
@@ -238,11 +240,11 @@ local theme = lush(function(injected_functions)
     },
     DiffChange {
       -- A89C14
-      fg = hsl(55, 79, 37),
+      fg = yellow,
     },
     DiffText {
       -- 008EC4
-      fg = hsl(197, 100, 38),
+      fg = blue,
     },
     SignColumn {
       -- #5FD7A7
@@ -348,15 +350,29 @@ local theme = lush(function(injected_functions)
     },
     WhichKeyFloat {
       bg = bg_very_subtle,
-      fg = hsl(0, 0, 78),
+      fg = hsl(0, 0, 58),
     },
     WhichKeyValue {
       bg = bg_very_subtle,
-      fg = hsl(0, 0, 78),
+      fg = hsl(0, 0, 58),
     },
 
     CmpItemAbbrMatch { Constant },
     CmpItemAbbrMatchFuzzy { Constant },
+
+    DiagnosticError {
+      fg = red;
+    },
+    DiagnosticWarn {
+      fg = yellow
+    },
+    DiagnosticInfo {
+      fg = blue
+    },
+    DiagnosticHint {
+      fg = norm_subtle
+    },
+
     -- The following are the Neovim (as of 0.8.0-dev+100-g371dfb174) highlight
     -- groups, mostly used for styling UI elements.
     -- Comment them out and add your own properties to override the defaults.
