@@ -251,6 +251,53 @@ local theme = lush(function(injected_functions)
       fg = green,
     },
 
+    -- mini-statusline!
+    MiniStatuslineModeNormal {
+      fg = bg,
+      bg = bg_subtle,
+      gui = "bold",
+      cterm = "bold",
+    },
+    MiniStatuslineModeInsert {
+      fg = hsl(0,0,93),
+      gui = "bold",
+      cterm = "bold",
+      bg = hsl(5, 72, 43),
+    },
+    MiniStatuslineModeVisual {
+      fg = bg,
+      bg = color4,
+      gui = "bold",
+      cterm = "bold",
+    },
+    MiniStatuslineModeReplace {
+      fg = bg,
+      bg = blue,
+      gui = "bold",
+      cterm = "bold",
+    },
+    MiniStatuslineModeCommand {
+      fg = bg,
+      bg = color3,
+      gui = "bold",
+      cterm = "bold",
+    },
+    MiniStatuslineModeOther {
+      bg = bg_subtle,
+      gui = "bold",
+      cterm = "bold",
+      bg = red,
+    },
+    MiniStatuslineDevinfo {
+      bg = bg_very_subtle,
+    },
+    MiniStatuslineFilename {
+      bg = hsl(0, 0, 84),
+    },
+    MiniStatuslineFileinfo {
+      bg = bg_very_subtle,
+    },
+
     -- treesitter!
     TSAttribute {
       -- #767676
