@@ -131,7 +131,7 @@ local theme = lush(function(injected_functions)
 
     -- cursor shit
     CursorColumn {
-      bg = bg_very_subtle
+      bg = hsl(0, 0, 93)
     },
     CursorLine { CursorColumn },
     ColorColumn {
@@ -296,6 +296,9 @@ local theme = lush(function(injected_functions)
     },
     MiniStatuslineFileinfo {
       bg = bg_very_subtle,
+    },
+    Whitespace   {
+      fg = hsl(0, 0, 83),
     },
 
     -- treesitter!
