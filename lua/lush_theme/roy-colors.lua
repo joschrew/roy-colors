@@ -16,7 +16,7 @@ local theme = lush(function(injected_functions)
 
   local green  = hsl(130, 100, 35)
   local red    = hsl(0, 100, 50)
-  local yellow = hsl(50, 100, 50)
+  local yellow = hsl(50, 100, 45)
   local blue   = hsl(215, 100, 65)
 
   return {
@@ -422,6 +422,10 @@ local theme = lush(function(injected_functions)
     DiagnosticHint {
       fg = norm_subtle
     },
+    DiagnosticUnderlineWarn    {
+      sp = yellow,
+      underline = true,
+    }
 
     -- The following are the Neovim (as of 0.8.0-dev+100-g371dfb174) highlight
     -- groups, mostly used for styling UI elements.
